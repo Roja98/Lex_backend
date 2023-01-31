@@ -1,5 +1,5 @@
 let config = {    
-    uri: "mongodb://localhost:27017/DB-Name",
+    uri: "mongodb://localhost:27017/Lex-Dev-DB",
     options: {
         useCreateIndex: true,
         useNewUrlParser: true,

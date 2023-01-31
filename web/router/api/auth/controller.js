@@ -84,8 +84,6 @@ let Auth = function () {
         })
     }
 
-
-
     let isValidUser = (userid, password, platform) => {
        console.log(userid, password, platform)
         return new Promise((resolve, reject) => {

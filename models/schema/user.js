@@ -1,8 +1,5 @@
 module.exports = function (mongoose) {
   let userSchema = new mongoose.Schema({
-    userid: {
-      type: String,
-    },
     email: {
       type: String,
       required: true,
@@ -18,39 +15,11 @@ module.exports = function (mongoose) {
     lastname: {
       type: String,
     },
-    username: {
-      type: String,
-    },
-    approved: {
+    active: {
       type: Boolean,
       default: false,
     },
-    rejected: {
-      type: Boolean,
-      default: false,
-    },
-    vendor: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "vendors",
-    },
-    site_code: [],
-    availableSites: [],
     role: {
-      type: String,
-    },
-    mobile: {
-      type: String,
-      unique: true,
-    },
-    transaction: {
-      type: Number,
-      default: 0,
-    },
-    passwordreset: {
-      type: Boolean,
-      default: true,
-    },
-    reporting_manager: {
       type: String,
     },
     deleted: {
@@ -71,25 +40,9 @@ module.exports = function (mongoose) {
       type: Date,
     },
     updatedby: {
-      email: {
-        type: String,
-      },
-      role: {
-        type: String,
-      },
-    },
-    approvedby: {
-      email: {
-        type: String,
-      },
-      role: {
-        type: String,
-      },
-    },
-    deviceid: {
-      type: String,
-    },
+      type: String
+    }
   });
 
-  return mongoose.model("users", userSchema);
+  return mongoose.model("user", userSchema);
 };
