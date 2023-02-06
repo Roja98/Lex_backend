@@ -2,7 +2,6 @@
 
 /*jslint node:true*/
 const crypto = require('crypto'),
-    redis = require('./redisHelper'),
     logger = require('./logger'),
     jwt = require('jwt-simple'),
     moment = require("moment"),

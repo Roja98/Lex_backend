@@ -1,5 +1,6 @@
 let mongoose = require('./connection');
 
 module.exports = {
-	user: require('./schema/user')(mongoose)
+	role: require('./schema/role')(mongoose),
+	user: require('./schema/user')(mongoose),
 }

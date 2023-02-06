@@ -11,6 +11,7 @@ const express = require('express'),
   router = require('./router'),
   cors = require('cors'),
   config = require(path.resolve('.') + '/config');
+  require('../models/connection')
 
 
 // Secure Express app by setting various HTTP headers

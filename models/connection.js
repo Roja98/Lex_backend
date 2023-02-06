@@ -1,14 +1,14 @@
 
 let mongoose = require('mongoose'),
-config = require('../../config');
-
+config = require('../config');
 mongoose.set('debug', true);
-
+console.log(config)
 // Create the database connection
 mongoose.connect(config.mongodb.uri, config.mongodb.options);
 mongoose.Promise = global.Promise;
 // CONNECTION EVENTS
 // When successfully connected
+
 mongoose.connection.on('connected', function () {
 console.log('Mongoose default connection open ');
 });

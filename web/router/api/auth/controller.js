@@ -1,8 +1,7 @@
 const path = require('path'),
     config = require(path.resolve('.') + '/config'),
     logger = require(path.resolve('.') + '/utils/logger'),
-    utils = require(path.resolve('.') + '/utils/utils'),
-    redis = require(path.resolve('.') + '/utils/redisHelper');
+    utils = require(path.resolve('.') + '/utils/utils');
 
 let Auth = function () {
     // Function to login and logout

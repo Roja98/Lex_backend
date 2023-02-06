@@ -1,9 +1,5 @@
 let config = {
-  port: 7001,
-  redis: {
-    host: "localhost",
-    port: "6379"
-  }
+  port: 7001
 }
 
 module.exports = config;
