@@ -48,7 +48,7 @@ app.use(function (req, res, next) {
 // Set the port no
 app.set('port', process.env.PORT || config.environment.port);
 
-app.use(middleware.auth.token);
+// app.use(middleware.auth.token);
 app.use('/', router);
 
 app.use('/', function (err, req, res, next) {
