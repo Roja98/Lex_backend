@@ -25,7 +25,7 @@ let Faqs = function () {
     }
 
     this.listFaq = (req, res) => {
-        return controller.listFaqs().then((result) => {
+        return controller.listFaqById().then((result) => {
 			logger.info('web | router | api | faq | listFaq(function) | listFaq success');
             res.status(200).json({
                 success: true,

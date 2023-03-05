@@ -6,6 +6,10 @@ module.exports = function (mongoose) {
                 ref: "category",
             }
         }],
+        deleted: {
+            type: String,
+            default: false
+        },
         createddate: {
             type: Date,
             default: Date.now,

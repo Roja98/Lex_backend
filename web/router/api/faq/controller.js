@@ -1,7 +1,11 @@
 "use strict";
+
+const { isObjectIdOrHexString } = require('mongoose');
+
 let path = require('path'),
     logger = require(path.resolve('.') + '/utils/logger'),
     config = require(path.resolve('.') + '/config'),
+    ObjectId = require("mongoose").Types.ObjectId,
     faqModel = require(path.resolve('.') + '/models').faq,
     _ = require('lodash');
 
@@ -32,7 +36,7 @@ let Faqs = function () {
             if (result) {
                 try {
                     logger.info('web | router | api | faqs | updateFaqs(function) | get faqs success', result);
-                    await faqModel.updateOne({ _id: data.faqId}, { $set: { faqs: data.faqs } })
+                    await faqModel.updateOne({ _id: data.faqId }, { $set: { faqs: data.faqs } })
                     return Promise.resolve(true);
                 } catch (error) {
                     logger.info('web | router | api | faqs | updateFaqs(function) | update faqs failure', error);
@@ -68,6 +72,41 @@ let Faqs = function () {
             }
         }).catch((error) => {
             logger.warn('web | router | api | faqs | listFaqs(function) | list faqs Error: ', error);
+            return Promise.reject({
+                message: error.message ? error.message : "Server error"
+            });
+        });
+    }
+
+    this.listFaqById = () => {
+        let findQuery = {
+            "_id": ObjectId("63e279c78efd16b56f9cd3f3")
+        }
+
+        return faqModel.aggregate([{
+            $match: findQuery
+        },{
+            $lookup: {
+                from: 'category',
+                localField: 'faqs.tagId',
+                foreignField: '_id',
+                as: '_category'
+            }
+        },{
+            $unwind: {
+                "path": "$_category",
+                "preserveNullAndEmptyArrays": true
+            }
+        },{
+            $project: {
+                '_id': 0,
+                'tagId': '$_category',
+            }
+        }]).then((response) => {
+            console.log('response from faq-->', response);
+            return Promise.resolve(response);
+        }).catch((error) => {
+            logger.warn('web | router | api | faqs | listFaq(function) | list faq Error: ', error);
             return Promise.reject({
                 message: error.message ? error.message : "Server error"
             });
